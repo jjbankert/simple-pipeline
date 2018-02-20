@@ -6,6 +6,7 @@ def queue_iterator(queue):
         item = queue.get()
 
         if item is None:
+            queue.put(None)
             break
 
         yield item

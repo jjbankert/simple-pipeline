@@ -1,6 +1,5 @@
 import multiprocessing
 import workers
-from termcolor import colored
 
 
 class Task:
@@ -88,12 +87,8 @@ class Pipeline:
             self.join_processes(stages[idx])
 
             queue = queues[idx]
-            for _ in range(len(stages[idx + 1])):
-                queue.put(None)
+            queue.put(None)
 
-            queue.close()
-            queue.join_thread()
-            # print(colored('joined queue {}->{}'.format(self.tasks[idx].name, self.tasks[idx + 1].name), 'blue'))
 
         self.join_processes(stages[-1])
 
